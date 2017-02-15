@@ -11,6 +11,7 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 '''
 
 from __future__ import print_function
+import sys
 
 import tensorflow as tf
 
@@ -65,6 +66,7 @@ with tf.Session() as sess:
         # Display logs per epoch step
         if (epoch+1) % display_step == 0:
             print("Epoch:", '%04d' % (epoch+1), "cost=", "{:.9f}".format(avg_cost))
+            sys.stdout.flush()
 
     print("Optimization Finished!")
 

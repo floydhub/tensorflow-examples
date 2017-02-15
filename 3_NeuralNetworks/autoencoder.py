@@ -10,6 +10,7 @@ Links:
     [MNIST Dataset] http://yann.lecun.com/exdb/mnist/
 """
 from __future__ import division, print_function, absolute_import
+import sys
 
 import tensorflow as tf
 import numpy as np
@@ -100,6 +101,7 @@ with tf.Session() as sess:
         if epoch % display_step == 0:
             print("Epoch:", '%04d' % (epoch+1),
                   "cost=", "{:.9f}".format(c))
+            sys.stdout.flush()
 
     print("Optimization Finished!")
 

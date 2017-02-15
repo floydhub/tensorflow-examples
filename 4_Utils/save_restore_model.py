@@ -8,6 +8,7 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 '''
 
 from __future__ import print_function
+import sys
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
@@ -71,6 +72,7 @@ saver = tf.train.Saver()
 
 # Running first session
 print("Starting 1st session...")
+sys.stdout.flush()
 with tf.Session() as sess:
     # Initialize variables
     sess.run(init)
@@ -91,6 +93,7 @@ with tf.Session() as sess:
         if epoch % display_step == 0:
             print("Epoch:", '%04d' % (epoch+1), "cost=", \
                 "{:.9f}".format(avg_cost))
+            sys.stdout.flush()
     print("First Optimization Finished!")
 
     # Test model
@@ -102,6 +105,7 @@ with tf.Session() as sess:
     # Save model weights to disk
     save_path = saver.save(sess, model_path)
     print("Model saved in file: %s" % save_path)
+    sys.stdout.flush()
 
 # Running a new session
 print("Starting 2nd session...")
@@ -129,6 +133,7 @@ with tf.Session() as sess:
         if epoch % display_step == 0:
             print("Epoch:", '%04d' % (epoch + 1), "cost=", \
                 "{:.9f}".format(avg_cost))
+            sys.stdout.flush()
     print("Second Optimization Finished!")
 
     # Test model

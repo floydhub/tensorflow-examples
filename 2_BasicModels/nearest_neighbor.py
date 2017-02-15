@@ -8,6 +8,7 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 '''
 
 from __future__ import print_function
+import sys
 
 import numpy as np
 import tensorflow as tf
@@ -46,6 +47,7 @@ with tf.Session() as sess:
         # Get nearest neighbor class label and compare it to its true label
         print("Test", i, "Prediction:", np.argmax(Ytr[nn_index]), \
             "True Class:", np.argmax(Yte[i]))
+        sys.stdout.flush()
         # Calculate accuracy
         if np.argmax(Ytr[nn_index]) == np.argmax(Yte[i]):
             accuracy += 1./len(Xte)

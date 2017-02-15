@@ -8,6 +8,7 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 '''
 
 from __future__ import print_function
+import sys
 
 import tensorflow as tf
 from tensorflow.contrib import rnn
@@ -111,7 +112,7 @@ with tf.Session() as sess:
             print("Iter " + str(step*batch_size) + ", Minibatch Loss= " + \
                   "{:.6f}".format(loss) + ", Training Accuracy= " + \
                   "{:.5f}".format(acc))
-        step += 1
+            sys.stdout.flush()
     print("Optimization Finished!")
 
     # Calculate accuracy for 128 mnist test images
