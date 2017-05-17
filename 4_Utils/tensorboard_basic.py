@@ -8,7 +8,6 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 '''
 
 from __future__ import print_function
-import sys
 
 import tensorflow as tf
 
@@ -50,7 +49,7 @@ with tf.name_scope('Accuracy'):
     acc = tf.reduce_mean(tf.cast(acc, tf.float32))
 
 # Initializing the variables
-init = tf.initialize_all_variables()
+init = tf.global_variables_initializer()
 
 # Create a summary to monitor cost tensor
 tf.summary.scalar("loss", cost)
@@ -84,7 +83,6 @@ with tf.Session() as sess:
         # Display logs per epoch step
         if (epoch+1) % display_step == 0:
             print("Epoch:", '%04d' % (epoch+1), "cost=", "{:.9f}".format(avg_cost))
-            sys.stdout.flush()
 
     print("Optimization Finished!")
 

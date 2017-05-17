@@ -8,8 +8,6 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 '''
 
 from __future__ import print_function
-import sys
-import time
 
 import tensorflow as tf
 
@@ -113,7 +111,6 @@ with tf.Session() as sess:
     sess.run(init)
     step = 1
     # Keep training until reach max iterations
-    time1 = time.time()
     while step * batch_size < training_iters:
         batch_x, batch_y = mnist.train.next_batch(batch_size)
         # Run optimization op (backprop)
@@ -127,11 +124,8 @@ with tf.Session() as sess:
             print("Iter " + str(step*batch_size) + ", Minibatch Loss= " + \
                   "{:.6f}".format(loss) + ", Training Accuracy= " + \
                   "{:.5f}".format(acc))
-            sys.stdout.flush()
         step += 1
-    time2 = time.time()
     print("Optimization Finished!")
-    print("Time elapsed: ", time2-time1)
 
     # Calculate accuracy for 256 mnist test images
     print("Testing Accuracy:", \

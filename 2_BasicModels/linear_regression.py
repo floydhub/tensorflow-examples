@@ -6,7 +6,6 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 '''
 
 from __future__ import print_function
-import sys
 
 import tensorflow as tf
 import numpy
@@ -34,11 +33,12 @@ W = tf.Variable(rng.randn(), name="weight")
 b = tf.Variable(rng.randn(), name="bias")
 
 # Construct a linear model
-pred = tf.add(tf.mul(X, W), b)
+pred = tf.add(tf.multiply(X, W), b)
 
 # Mean squared error
 cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
 # Gradient descent
+#  Note, minimize() knows to modify W and b because Variable objects are trainable=True by default
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 
 # Initializing the variables
@@ -58,12 +58,10 @@ with tf.Session() as sess:
             c = sess.run(cost, feed_dict={X: train_X, Y:train_Y})
             print("Epoch:", '%04d' % (epoch+1), "cost=", "{:.9f}".format(c), \
                 "W=", sess.run(W), "b=", sess.run(b))
-            sys.stdout.flush()
 
     print("Optimization Finished!")
     training_cost = sess.run(cost, feed_dict={X: train_X, Y: train_Y})
     print("Training cost=", training_cost, "W=", sess.run(W), "b=", sess.run(b), '\n')
-    sys.stdout.flush()
 
     # Graphic display
     plt.plot(train_X, train_Y, 'ro', label='Original data')
@@ -82,8 +80,7 @@ with tf.Session() as sess:
     print("Testing cost=", testing_cost)
     print("Absolute mean square loss difference:", abs(
         training_cost - testing_cost))
-    sys.stdout.flush()
-    
+
     plt.plot(test_X, test_Y, 'bo', label='Testing data')
     plt.plot(train_X, sess.run(W) * train_X + sess.run(b), label='Fitted line')
     plt.legend()

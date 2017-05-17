@@ -8,7 +8,6 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 '''
 
 from __future__ import print_function
-import sys
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
@@ -87,7 +86,6 @@ with tf.Session() as sess:
         if epoch % display_step == 0:
             print("Epoch:", '%04d' % (epoch+1), "cost=", \
                 "{:.9f}".format(avg_cost))
-            sys.stdout.flush()
     print("Optimization Finished!")
 
     # Test model

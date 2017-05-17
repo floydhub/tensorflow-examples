@@ -8,7 +8,7 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 '''
 
 from __future__ import print_function
-import sys
+
 import tensorflow as tf
 
 # Import MNIST data
@@ -71,7 +71,7 @@ with tf.name_scope('Model'):
 
 with tf.name_scope('Loss'):
     # Softmax Cross entropy (cost function)
-    loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y))
+    loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=pred, labels=y))
 
 with tf.name_scope('SGD'):
     # Gradient Descent
@@ -88,7 +88,7 @@ with tf.name_scope('Accuracy'):
     acc = tf.reduce_mean(tf.cast(acc, tf.float32))
 
 # Initializing the variables
-init = tf.initialize_all_variables()
+init = tf.global_variables_initializer()
 
 # Create a summary to monitor cost tensor
 tf.summary.scalar("loss", loss)
@@ -129,7 +129,6 @@ with tf.Session() as sess:
         # Display logs per epoch step
         if (epoch+1) % display_step == 0:
             print("Epoch:", '%04d' % (epoch+1), "cost=", "{:.9f}".format(avg_cost))
-            sys.stdout.flush()
 
     print("Optimization Finished!")
 
